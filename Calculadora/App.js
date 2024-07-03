@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react'
+import { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 
 export default function App() {
@@ -10,32 +10,35 @@ export default function App() {
   const [lastNumber, setLastNumber] = useState("")
 
 
-  function calculator(){
+  function calculator() {
     const splitNumbers = currentNumber.split(' ')
     const fistNumber = parseFloat(splitNumbers[0])
     const lastNumber = parseFloat(splitNumbers[2])
     const operator = splitNumbers[1]
 
     // Faz ação referente tecla pressionada
-    switch(operator){
+    switch (operator) {
       case '+':
         setCurrentNumber((fistNumber + lastNumber).toString())
         return
-      case '-': 
+      case '-':
         setCurrentNumber((fistNumber - lastNumber).toString())
         return
       case 'x':
         setCurrentNumber((fistNumber * lastNumber).toString())
         return
-      case '/': 
+      case '/':
         setCurrentNumber((fistNumber / lastNumber).toString())
+        return
+      case '%':
+        setCurrentNumber((fistNumber * [lastNumber / 100]).toString())
         return
     }
   }
 
-  function handleInput(buttonPressed){
+  function handleInput(buttonPressed) {
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
-    if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/" ){
+    if (buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/" | buttonPressed === '%') {
       setCurrentNumber(currentNumber + " " + buttonPressed + " ")
       return
     }
